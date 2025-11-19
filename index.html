@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端开发者软考高级与杭州E类人才认定指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Noto Sans SC', 'Poppins', sans-serif;
+        background-color: #ffffff;
+      }
+      .card {
+        background-color: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 1.25rem; /* 20px */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        overflow: hidden;
+        position: relative;
+      }
+      .highlight-gradient-blue {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+      }
+      .highlight-gradient-green {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0), rgba(34, 197, 94, 0.05));
+      }
+      .highlight-gradient-purple {
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0), rgba(168, 85, 247, 0.05));
+      }
+      .highlight-gradient-orange {
+        background: linear-gradient(135deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.05));
+      }
+      .highlight-gradient-red {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.05));
+      }
+      .highlight-gradient-cyan {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0), rgba(6, 182, 212, 0.05));
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+        <!-- 标题卡片 -->
+        <div class="card md:col-span-4 md:row-span-1 p-8 flex flex-col justify-center relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+          <div class="relative">
+            <h1 class="text-4xl md:text-5xl font-black text-gray-800 leading-tight">
+              前端开发者
+              <br />
+              软考高级与杭州E类人才认定指南
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">为从业两年的前端开发者提供科学决策依据和实用备考建议</p>
+          </div>
+        </div>
+
+        <!-- 通过率对比卡片 -->
+        <div class="card md:col-span-2 md:row-span-2 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+          <div class="relative flex-grow flex flex-col">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-chart-line text-2xl text-green-500 mr-3"></i>
+              <h2 class="text-xl font-bold text-gray-800">历年通过率对比</h2>
+            </div>
+            <div class="flex-grow h-full min-h-[200px]">
+              <canvas id="passRateChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 信息系统项目管理师卡片 -->
+        <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+          <div class="relative">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">信息系统项目管理师</h3>
+                <p class="text-sm text-gray-500">Information Systems Project Management Professional</p>
+              </div>
+              <div class="text-right">
+                <div class="text-3xl font-bold text-blue-500">24.3%</div>
+                <div class="text-sm text-gray-500">2024年全国平均通过率</div>
+              </div>
+            </div>
+            <div class="flex space-x-4 text-sm">
+              <div class="flex items-center">
+                <i class="fa-solid fa-star text-yellow-400 mr-1"></i>
+                <span>难度系数: ★★★☆☆</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa-solid fa-clock text-blue-400 mr-1"></i>
+                <span>备考周期: 2-3个月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa-solid fa-book-open text-green-400 mr-1"></i>
+                <span>管理占比: 70%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 系统架构设计师卡片 -->
+        <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+          <div class="relative">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">系统架构设计师</h3>
+                <p class="text-sm text-gray-500">System Architect Designer</p>
+              </div>
+              <div class="text-right">
+                <div class="text-3xl font-bold text-purple-500">3.87%</div>
+                <div class="text-sm text-gray-500">2025上半年杭州通过率</div>
+              </div>
+            </div>
+            <div class="flex space-x-4 text-sm">
+              <div class="flex items-center">
+                <i class="fa-solid fa-star text-yellow-400 mr-1"></i>
+                <span>难度系数: ★★★★★</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa-solid fa-clock text-purple-400 mr-1"></i>
+                <span>备考周期: 5-7个月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa-solid fa-code text-orange-400 mr-1"></i>
+                <span>技术占比: 90%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 杭州E类人才认定卡片 -->
+        <div class="card md:col-span-2 md:row-span-2 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+          <div class="relative flex-grow flex flex-col">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-award text-2xl text-orange-500 mr-3"></i>
+              <h2 class="text-xl font-bold text-gray-800">杭州E类人才认定</h2>
+            </div>
+            <div class="space-y-4 flex-grow">
+              <div class="bg-orange-50 rounded-lg p-4">
+                <h4 class="font-bold text-orange-800 mb-2">认定条件</h4>
+                <p class="text-sm text-orange-700">
+                  取得副高级专业技术职务任职资格，并获得区县级以上奖励、承担设区市级以上课题、取得授权专利等专业技术成果之一。
+                </p>
+              </div>
+              <div class="bg-orange-50 rounded-lg p-4">
+                <h4 class="font-bold text-orange-800 mb-2">核心优势</h4>
+                <p class="text-sm text-orange-700">
+                  软考高级证书可直接等同于副高级职称资格，无需复杂评审流程，是前端开发者获得E类人才认定的理想途径。
+                </p>
+              </div>
+              <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-white rounded-lg p-3 border border-orange-100">
+                  <div class="text-2xl font-bold text-orange-500">2500元</div>
+                  <div class="text-xs text-gray-500">月租房补贴</div>
+                </div>
+                <div class="bg-white rounded-lg p-3 border border-orange-100">
+                  <div class="text-2xl font-bold text-orange-500">5年</div>
+                  <div class="text-xs text-gray-500">最长补贴期限</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 考试难度深度剖析卡片 -->
+        <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+          <div class="relative">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">考试难度深度剖析</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white rounded-lg p-4 border border-gray-100">
+                <h4 class="font-semibold text-blue-600 mb-2">信息系统项目管理师</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• 技术占比仅30%，管理占比70%</li>
+                  <li>• 计算题有固定公式和解题套路</li>
+                  <li>• 适合非技术背景考生</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-lg p-4 border border-gray-100">
+                <h4 class="font-semibold text-purple-600 mb-2">系统架构设计师</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• 要求全栈技术知识</li>
+                  <li>• 新增云原生、AIoT等前沿内容</li>
+                  <li>• 需5年以上开发经验</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2025年考试趋势卡片 -->
+        <div class="card md:col-span-4 md:row-span-1 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-cyan"></div>
+          <div class="relative">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">2025年考试趋势与变化</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-blue-600 mb-2 flex items-center">
+                  <i class="fa-solid fa-arrow-trend-up mr-2"></i>
+                  信息系统项目管理师新趋势
+                </h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• 新增数字化转型框架、AI伦理治理</li>
+                  <li>• 管理科学成为案例分析新重点</li>
+                  <li>• 论文要求包含图表，字数限制2500字以内</li>
+                  <li>• 计算题分值权重提升40%</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-purple-600 mb-2 flex items-center">
+                  <i class="fa-solid fa-microchip mr-2"></i>
+                  系统架构设计师新要求
+                </h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• 新增可解释AI架构、零信任安全架构</li>
+                  <li>• 案例分析真实业务场景占比提升至65%</li>
+                  <li>• 论文要求"业务-技术-管理"三维架构设计</li>
+                  <li>• 2025年上半年考生反馈超纲题较多</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 前端开发者适配性分析卡片 -->
+        <div class="card md:col-span-2 md:row-span-2 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+          <div class="relative flex-grow flex flex-col">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-user-gear text-2xl text-blue-500 mr-3"></i>
+              <h2 class="text-xl font-bold text-gray-800">前端开发者适配性分析</h2>
+            </div>
+            <div class="flex-grow">
+              <canvas id="suitabilityChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 申请流程卡片 -->
+        <div class="card md:col-span-2 md:row-span-2 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+          <div class="relative flex-grow flex flex-col">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-list-ol text-2xl text-green-500 mr-3"></i>
+              <h2 class="text-xl font-bold text-gray-800">E类人才认定申请流程</h2>
+            </div>
+            <div class="flex-grow space-y-3">
+              <div class="flex items-start">
+                <div
+                  class="bg-green-100 rounded-full w-6 h-6 flex items-center justify-center text-green-600 font-bold text-sm mt-0.5 mr-3 flex-shrink-0"
+                >
+                  1
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">登录系统注册申报</h4>
+                  <p class="text-sm text-gray-500">使用浙江政务网个人账号登录杭州市高层次人才分类认定系统</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="bg-green-100 rounded-full w-6 h-6 flex items-center justify-center text-green-600 font-bold text-sm mt-0.5 mr-3 flex-shrink-0"
+                >
+                  2
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">准备并上传材料</h4>
+                  <p class="text-sm text-gray-500">身份证、学历学位证书、职称证书、劳动合同及社保缴纳证明等</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="bg-green-100 rounded-full w-6 h-6 flex items-center justify-center text-green-600 font-bold text-sm mt-0.5 mr-3 flex-shrink-0"
+                >
+                  3
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">单位审核上报</h4>
+                  <p class="text-sm text-gray-500">单位审核材料并在内部公示3个工作日，通过系统上报至受理部门</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="bg-green-100 rounded-full w-6 h-6 flex items-center justify-center text-green-600 font-bold text-sm mt-0.5 mr-3 flex-shrink-0"
+                >
+                  4
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">部门审核与公示</h4>
+                  <p class="text-sm text-gray-500">受理部门预审、现场核验、审核条件、网上公示，整个过程约10个工作日</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="bg-green-100 rounded-full w-6 h-6 flex items-center justify-center text-green-600 font-bold text-sm mt-0.5 mr-3 flex-shrink-0"
+                >
+                  5
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">下载电子证书</h4>
+                  <p class="text-sm text-gray-500">认定通过后，可在系统中下载E类人才电子证书，证书有效期为2年</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 课程资源评估卡片 -->
+        <div class="card md:col-span-4 md:row-span-1 p-6 flex flex-col relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+          <div class="relative">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">B站优质课程资源评估</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-blue-600 mb-2">信息系统项目管理师热门课程</h4>
+                <div class="space-y-2">
+                  <div class="bg-white rounded-lg p-3 border border-gray-100">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-700">马军老师系列课程</span>
+                      <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">案例分析专项</span>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-lg p-3 border border-gray-100">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-700">夏天老师系列课程</span>
+                      <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">零基础入门</span>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-lg p-3 border border-gray-100">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-700">老高说高项系列</span>
+                      <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">碎片化学习</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-purple-600 mb-2">系统架构设计师热门课程</h4>
+                <div class="space-y-2">
+                  <div class="bg-white rounded-lg p-3 border border-gray-100">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-700">王勇老师系列课程</span>
+                      <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">系统精讲</span>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-lg p-3 border border-gray-100">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-700">文老师架构2025系列</span>
+                      <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">真题解析</span>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-lg p-3 border border-gray-100">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-700">清华大佬198集系列</span>
+                      <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">全面覆盖</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 综合建议卡片 -->
+        <div class="card md:col-span-4 md:row-span-1 p-8 flex flex-col justify-center relative">
+          <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+          <div class="relative">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">综合建议与行动计划</h2>
+            <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-500">
+              <h3 class="text-lg font-semibold text-blue-800 mb-2">核心建议</h3>
+              <p class="text-gray-700 mb-4">
+                基于数据分析，
+                <span class="font-bold text-blue-600">信息系统项目管理师</span>
+                是更适合从业两年前端开发者的选择，具有高通过率、低技术门槛、短备考周期的优势。
+              </p>
+              <h3 class="text-lg font-semibold text-blue-800 mb-2">立即行动</h3>
+              <p class="text-gray-700">
+                从今天开始制定学习计划，选择合适的课程资源，在B站上开启备考之旅。预计3-4个月备考时间，可在2025年11月参加考试，2026年上半年完成E类人才认定。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 通过率对比图表
+    const passRateCtx = document.getElementById('passRateChart').getContext('2d')
+    const passRateChart = new Chart(passRateCtx, {
+      type: 'bar',
+      data: {
+        labels: ['全国平均(高项)', '浙江地区(高项)', '全国平均(架构)', '杭州地区(架构)'],
+        datasets: [
+          {
+            label: '通过率 (%)',
+            data: [24.3, 28, 16.2, 3.87],
+            backgroundColor: [
+              'rgba(59, 130, 246, 0.6)',
+              'rgba(59, 130, 246, 0.8)',
+              'rgba(168, 85, 247, 0.6)',
+              'rgba(168, 85, 247, 0.8)',
+            ],
+            borderColor: [
+              'rgba(59, 130, 246, 1)',
+              'rgba(59, 130, 246, 1)',
+              'rgba(168, 85, 247, 1)',
+              'rgba(168, 85, 247, 1)',
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 35,
+            ticks: {
+              callback: function (value) {
+                return value + '%'
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return `通过率: ${context.raw}%`
+              },
+            },
+          },
+        },
+      },
+    })
+
+    // 适配性分析雷达图
+    const suitabilityCtx = document.getElementById('suitabilityChart').getContext('2d')
+    const suitabilityChart = new Chart(suitabilityCtx, {
+      type: 'radar',
+      data: {
+        labels: ['技术门槛', '备考周期', '与工作相关性', '通过率', '证书含金量', '学习资源'],
+        datasets: [
+          {
+            label: '信息系统项目管理师',
+            data: [85, 90, 75, 95, 70, 85],
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
+          },
+          {
+            label: '系统架构设计师',
+            data: [40, 30, 85, 30, 95, 65],
+            backgroundColor: 'rgba(168, 85, 247, 0.2)',
+            borderColor: 'rgba(168, 85, 247, 1)',
+            pointBackgroundColor: 'rgba(168, 85, 247, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(168, 85, 247, 1)',
+          },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            angleLines: {
+              display: true,
+            },
+            suggestedMin: 0,
+            suggestedMax: 100,
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      },
+    })
+  </script>
+</html>
